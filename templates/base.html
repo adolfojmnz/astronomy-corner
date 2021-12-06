@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<hrml lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>
+			{% block title %}
+			Block Title
+			{% endblock %}
+		</title>
+	</head>
+	<body>
+		<header>
+			<nav>
+				{% block navbar %}
+				The most amazing navigation bar
+				{% endblock %}
+			</nav>
+		</header>
+		<main>
+			{% block content %}
+			{% endblock %}
+		</main>
+		<aside>
+			{% block aside %}
+			{% endblock %}
+		</aside>
+	</body>
+</hrml>
