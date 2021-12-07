@@ -6,22 +6,19 @@ APOD - Astronomy Picture Of The Day
 
 
 {% block content %}
-<center>
-<h1>Astronomy Picture Of The Day</h1>
+	<center>
+		<h1>Astronomy Picture Of The Day</h1>
 
+		{# image #}
+		</p><time datetime="{{ apod_data.date }}">{{ apod_data.date }}</time></p>
+		<a href="{{ apod_data.url }}" target="_blank"><img src="{{ apod_data.url }}"></a>
+		<h2>{{ apod_data.title }}</h2>
 
-{# image #}
-</p><time datetime="{{ apod_data.date }}">{{ apod_data.date }}</time></p>
-<a href="{{ apod_data.url }}" target="_blank"><img src="{{ apod_data.url }}"></a>
-<h2>{{ apod_data.title }}</h2>
+		<p><strong>Explanation</strong>:{{ apod_data.explanation }}</p>
 
-<p><strong>Explanation</strong>:{{ apod_data.explanation }}</p>
-
-<hr>
-<p>Copyright: {{ apod_data.copyright }}</p>
-<p>Source <a href="https://apod.nasa.gov/" target="_blank">https://apod.nasa.gov/</a></p>
-<p><a href="{{ apod_data.hdurl }}" target="_blank">Open image in HD</a></p>
-
-</center>
-
+		<hr>
+		<p>Copyright: {{ apod_data.copyright }}</p>
+		<p>Source <a href="https://apod.nasa.gov/" target="_blank">https://apod.nasa.gov/</a></p>
+		<p><a href="{{ apod_data.hdurl }}" target="_blank">Open image in HD</a></p>
+	</center>
 {% endblock %}
