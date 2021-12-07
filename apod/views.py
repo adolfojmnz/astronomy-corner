@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .apod_data import apod_index
+from .apod_api.apod_data import apod_index
 
 
 def index(request):
