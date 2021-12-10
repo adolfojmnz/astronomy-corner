@@ -16,9 +16,11 @@ APOD - Astronomy Picture Of The Day
 
 		<p><strong>Explanation</strong>: {{ apod_data.explanation }}</p>
 
-		<hr>
 		<p>Copyright: {{ apod_data.copyright }}</p>
 		<p>Source <a href="https://apod.nasa.gov/" target="_blank">https://apod.nasa.gov/</a></p>
 		<p><a href="{{ apod_data.hdurl }}" target="_blank">Open image in HD</a></p>
+
+		<hr>
+		{% include "apod/apod_date_snippet.html" %}
 	</center>
 {% endblock %}
