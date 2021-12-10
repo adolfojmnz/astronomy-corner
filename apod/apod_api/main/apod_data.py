@@ -24,7 +24,7 @@ def apod_main(API=None, str_date=None):
 	t0 = time.time()
 	data = apod_local.get_data(filepath)
 	t1 = time.time()
-	print(f'Data retrived in {t1-t0:.4f} seconds')
+	print(f'Data read in {t1-t0:.4f} seconds')
 	return data
 
 

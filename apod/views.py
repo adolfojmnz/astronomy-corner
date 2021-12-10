@@ -31,6 +31,5 @@ def render_requested_apod(request):
 	if request.method == 'POST':
 		date = get_requested_date(request.POST)
 	else:
-		date = str(timezone.now() - timedelta(hours=4)).split()[0]
-	print(date)
+		date = str(timezone.now()).split()[0]
 	return apod_main(str_date=date)
