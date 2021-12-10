@@ -1,0 +1,10 @@
+{% comment %}
+	Include this template using the include tag
+	and pass to it the images source.
+	e.g:
+		{% include "bootstrap-image.html" with source="path/to/image.png" %}
+{% endcomment %}
+
+{% block bootstrap-image %}
+	<img src="{{ source }}" class="img-fluid img-thumbnail mx-auto d-block">
+{% endblock %}
