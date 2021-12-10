@@ -1,10 +1,14 @@
-<form action="{% url 'apod:index' %}" method="post">
-	{% csrf_token %}
+<center>
+	<form action="{% url 'apod:index' %}" method="post">
+		{% csrf_token %}
 
-	{% for field in form %}
-		<div class="fieldWrapper">
-			{{ field.label_tag }} {{ field }}
-		</div>
-	{% endfor %}
-	<input type="submit" value="Go!">
-</form>
+			{% for field in form %}
+				<div class="">
+					{{ field.label_tag }}
+					{{ field }}
+				</div>
+			{% endfor %}
+
+		<button class="btn btn-sm btn-outline-secondary" type="submit" >Go!</button>
+	</form>
+</center>
