@@ -1,0 +1,8 @@
+<form class="text-center" action="{% url 'apod:save' %}" method="POST">
+	{% csrf_token %}
+	{% if apod_object %}
+		<button class="btn btn-sm btn-success" type="submit">Saved</button>
+	{% else %}
+		<button class="btn btn-sm btn-secondary" type="submit">Save</button>
+	{% endif %}
+</form>
