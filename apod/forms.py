@@ -13,7 +13,7 @@ class ApodDateForm(forms.Form):
 		return self.date
 
 
-class ApodSaveForm(forms.ModelForm):
+class ApodCreateForm(forms.ModelForm):
 
 	class Meta:
 		model = Apod

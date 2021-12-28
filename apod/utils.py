@@ -1,13 +1,11 @@
 from django.shortcuts import render, redirect
 
-from .apod_api import ApodClass
-
 
 class ApodHttpMethodsMixin():
 	model = None
+	apod_class = None
 	form_class = None
 	template_name = ''
-	apod_class = ApodClass
 
 	def get(self, request):
 		apod_data = self.apod_class().get_apod_data()
@@ -48,3 +46,17 @@ class ApodHttpMethodsMixin():
 				'apod_object': apod_object,
 			}
 		return render(request, self.template_name, context)
+
+
+class ApodCreateMixin:
+	apod_http_methods_mixin_class = ApodHttpMethodsMixin
+
+	def get(self, request):
+		return ApodHttpMethodsMixin().get(request)
+
+	def post(sefl, request):
+		form = self.form_class(request.POST)
+		if form.is_valid():
+			new_apod = form.save()
+			print('Apod object created...')
+		return redirect('apod:apod')
