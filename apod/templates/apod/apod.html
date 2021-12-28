@@ -1,0 +1,32 @@
+{% extends parent_template|default:"apod/base_apod.html" %}
+
+{% block title %}
+	APOD - Astronomy Picture Of The Day
+{% endblock %}
+
+{% block content %}
+	<h1 class="text-center">Astronomy Picture Of The Day</h1>
+
+	{# Date and Picture #}
+	<p class="text-center">
+		<time datetime="{{ apod_data.date }}">
+			{{ apod_data.date }}
+		</time>
+	</p>
+	<a href="{{ apod_data.url }}" target="_blank">
+		{% include "bootstrap-image.html" with source=apod_data.url %}
+	</a>
+
+	<h2 class="text-center">{{ apod_data.title }}</h2>
+
+	<p class="text-center"><strong>Explanation</strong>: {{ apod_data.explanation }}</p>
+
+	<p class="text-center">Copyright: {{ apod_data.copyright }}</p>
+	<p class="text-center">Source <a href="https://apod.nasa.gov/" target="_blank">https://apod.nasa.gov/</a></p>
+	<p class="text-center"><a href="{{ apod_data.hdurl }}" target="_blank">Open image in HD</a></p>
+
+	<hr>
+	<center>
+		{% include "apod/apod_date_form.html" %}
+	</center>
+{% endblock %}
