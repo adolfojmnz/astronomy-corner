@@ -1,35 +1,11 @@
-from django.shortcuts import render
-from django.utils import timezone
-from datetime import timedelta
+from django.views import View
 
-from .forms import APODDate
-
-from .apod_api.main.apod_data import apod_main
-from .apod_api.main.apod_api import get_requested_date
+from .models import Apod
+from .forms import ApodDateForm
+from .utils import ApodHttpMethodsMixin
 
 
-def index(request):
-	template_name = 'apod/index.html'
-	context = {
-		'apod_data': render_requested_apod(request),
-		'form': render_requested_form(request),
-	}
-	return render(request, template_name, context)
-
-
-def render_requested_form(request):
-	if request.method == 'POST':
-		form = APODDate(request.POST)
-		if form.is_valid():
-			return form
-		return APODDate()
-	if request.method == 'GET':
-		return APODDate()
-
-
-def render_requested_apod(request):
-	if request.method == 'POST':
-		date = get_requested_date(request.POST)
-	else:
-		date = str(timezone.now()).split()[0]
-	return apod_main(str_date=date)
+class ApodView(View, ApodHttpMethodsMixin):
+	model = Apod
+	form_class = ApodDateForm
+	template_name = 'apod/apod.html'

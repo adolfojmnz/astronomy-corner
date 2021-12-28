@@ -1,8 +1,9 @@
 from django.urls import path
 
-from .views import index
+from .views import ApodView
+
 
 app_name = 'apod'
 urlpatterns = [
-	path('', index, name='index'),
+	path('', ApodView.as_view(), name='apod'),
 ]
