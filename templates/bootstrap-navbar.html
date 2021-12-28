@@ -1,12 +1,12 @@
 {# Bootstrap navbar #}
 {% block bootstrap-navbar %}
-<nav class="navbar navbar-light bg-light">
+<nav class="navbar navbar-hard-dark bg-hard-dark">
 
 	<div class="container-fluid">
 
 		<form class="container-fluid justify-content-start">
 			<a class="navbar-brand" href="#">Astronomy Corner</a>
-			<a href="{% url 'apod:index' %}"><button class="btn btn-sm btn-outline-secondary" type="button">APOD</button></a>
+			<a href="{% url 'apod:apod' %}"><button class="btn btn-sm btn-outline-secondary" type="button">APOD</button></a>
 			<button class="btn btn-sm btn-outline-secondary" type="button">EONET</button>
 			<button class="btn btn-sm btn-outline-secondary" type="button">EXOPLANETS</button>
 		</form>
