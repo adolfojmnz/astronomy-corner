@@ -5,7 +5,8 @@ from django.urls import reverse
 class GetReversedURL:
 
 	def get_reversed_url(self, urlpattern_name, kwargs=None):
-		if kwargs: return reverse(urlpattern_name, **kwargs)
+		if kwargs:
+			return reverse(urlpattern_name, **kwargs)
 		return reverse(urlpattern_name)
 
 
