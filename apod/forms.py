@@ -11,13 +11,3 @@ class ApodDateForm(forms.Form):
 
 	def __str__(self):
 		return self.date
-
-
-class ApodCreateForm(forms.ModelForm):
-
-	class Meta:
-		model = Apod
-		fields = '__all__'
-
-	def __str__(self):
-		return self.date
