@@ -1,0 +1,20 @@
+{% extends parent_template|default:"users/base_user.html" %}
+
+{% block title %}
+	Create User
+{% endblock %}
+
+{% block content %}
+	<div>
+		<form action="{% url 'users:create' %}" method="post">
+			{% csrf_token %}
+			<table>
+				{{ form.as_table }}
+			</table>
+			<button type="submit" class="btn btn-outline-success">Create</button>
+		</form>
+		<a href="{% url 'apod:apod' %}">
+			<button type="button" class="btn btn-outline-secondary">Cancel</button>
+		</a>
+	</div>
+{% endblock %}
