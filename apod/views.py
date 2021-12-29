@@ -1,10 +1,12 @@
 from django.views import View
+from django.shortcuts import render
 
 from .models import Apod
-from .forms import ApodDateForm, ApodCreateForm
-from .utils import ApodHttpMethodsMixin, ApodCreateMixin
+from .forms import ApodDateForm
+from .utils import ApodHttpMethodsMixin, ApodListMixin
 
 from .apod_api import ApodClass
+
 
 
 class ApodView(View, ApodHttpMethodsMixin):
@@ -13,8 +15,7 @@ class ApodView(View, ApodHttpMethodsMixin):
 	form_class = ApodDateForm
 	template_name = 'apod/apod.html'
 
-class ApodCreate(View, ApodCreateMixin):
-	model = Apod
+
+class ApodList(View, ApodListMixin):
 	apod_class = ApodClass
-	form_class = ApodCreateForm
-	template_name = 'apod/apod.html'
+	template_name = 'apod/apod_list.html'

@@ -1,0 +1,30 @@
+{% extends parent_template|default:"users/base_user.html" %}
+
+
+{% block title %}
+	User Detail
+{% endblock %}
+
+{% block content %}
+	<div>
+		<p>
+			Nane: {{ user.name }}<br>
+			Lastname: {{ user.lastname }}<br>
+			Birthdate: {{ user.birthdate }}<br>
+		</p>
+
+		{% if user.apods.exists %}
+			<p>Saved APODs</p>
+			<ul>
+				{% for apod in user.apods.all %}
+					<p>
+						<a href="{{ apod.get_absolute_url }}">
+							{{ apod.title }}
+						</a><br>
+						On {{ apod.date }}<br>
+					</p>
+				{% endfor %}
+			</ul>
+		{% endif %}
+	</div>
+{% endblock %}
