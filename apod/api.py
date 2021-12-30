@@ -18,7 +18,7 @@ class ApodClass:
 			request['date_day'],
 		]
 		date = [e if len(e) > 1 else f'0{e}' for e in date]
-		return date
+		return f'{date[0]}-{date[1]}-{date[2]}'
 
 	def get_date_range(self, start=None, end=None, days=None):
 		""" Given date objects, returns string dates for a range. """
@@ -96,7 +96,13 @@ class ApodClass:
 
 		return data
 
-	def get_apod_data_for_date_range(self, start, end):
+	def get_apod_data_for_requested_date(self, request):
+		""" Returns data for date found in request.POST.date. """
+		API = self.get_api_for_requested_date(request)
+		return self.get_data_from_api(API)
+
+	def get_apod_data_for_date_range(self, start=None, end=None):
+		start = datetime.now() if start is None else start
 		API = self.get_api_for_date_range(start, end)
 		apod_data_range = self.get_data_from_api(API)
 
@@ -106,7 +112,11 @@ class ApodClass:
 				self.save_data_on_disk(apod_data, abs_filepath)
 		return apod_data_range
 
-
+	def get_apod_data_for_grid(self):
+		""" Returns the data for the last 30 APODs. """
+		end = datetime.now()
+		start = end - timedelta(days=30)
+		return self.get_apod_data_for_date_range(start, end)
 
 
 if __name__ == '__main__':
