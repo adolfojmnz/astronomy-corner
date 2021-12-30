@@ -1,0 +1,27 @@
+ {% extends parent_template|default:"apod/base_apod.html" %}
+
+{% block style %}
+	{{ block.super }}
+	<style type="text/css">
+		.item {
+			transition: .5s easy-in-out;
+		}
+		.item:hover {
+			filter: brightness(80%);
+		}
+	</style>
+{% endblock %}
+
+{% block content %}
+
+	<div class="container">
+
+		{% for apod in apod_list %}
+			<div class="row">
+				{% include "apod/apod_grid_snipped.html" %}
+			</div>
+		{% endfor %}
+
+	</div>
+
+{% endblock %}
