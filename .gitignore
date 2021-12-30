@@ -1,6 +1,10 @@
 # APOD API data directory
 retrived_data/
 
+# Exclude retrieved data from NASA APOD API
+apod/apod_data/images/*
+apod/apod_data/json/*
+
 # Byte-compiled / optimized / DLL files
 __pycache__/
 #__pycache__/*
