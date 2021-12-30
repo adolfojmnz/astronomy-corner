@@ -1,6 +1,8 @@
 from django.db import models
 from django.urls import reverse
 
+import os
+
 
 class GetReversedURL:
 
@@ -15,6 +17,11 @@ class Apod(models.Model, GetReversedURL):
 	date = models.DateField(
 		primary_key=True,
 		help_text='Date for an APOD',
+	)
+	image = models.ImageField(
+		upload_to="apod/apod_data/images/",
+	 	blank=True,
+		null=True,
 	)
 	json_data = models.JSONField()
 
