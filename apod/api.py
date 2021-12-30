@@ -80,12 +80,13 @@ class DataRetrivererMixin:
 
 
 class DataProcessorsMixin(ApiProcessorMixin, DataRetrivererMixin):
-	"""
-	Inherit this class to work with the APOD API.
-	"""
 
 	def get_apod_data(self, API=None):
 		API = self.API if API is None else API
+		return self.get_data_from_api(API)
+
+	def get_apod_data_for_str_date(self, date):
+		API = self.get_api_for_date(date)
 		return self.get_data_from_api(API)
 
 	def get_apod_data_for_requested_date(self, post_request):
@@ -99,3 +100,10 @@ class DataProcessorsMixin(ApiProcessorMixin, DataRetrivererMixin):
 	def get_apod_data_for_default_date_range(self):
 		API = self.get_api_for_date_range()
 		return self.get_data_from_api(API)
+
+
+class ApodClass(DataProcessorsMixin):
+	"""
+	Inherit this class to work with the APOD API.
+	"""
+	pass
