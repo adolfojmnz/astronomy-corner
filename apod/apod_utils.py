@@ -11,14 +11,16 @@ class GetApod:
 	formated as 2021-12-22.
 	"""
 	model = None
-	apod_class = None
+	api_class = None
 
-	def get_or_create_apod(self, date):
+	def get_or_create_apod(self, date=None):
+		if date is None: date = self.api_class().get_date_for_today()
+		print(date)
 		try:
 			apod_object = self.model.objects.get(date=date)
 		except self.model.DoesNotExist:
 			try:
-				data = self.apod_class().get_apod_data_for_str_date(date)
+				data = self.api_class().get_apod_data_for_str_date(date)
 			except:
 				print('GetApod.get_or_create_apod:\nData could not be retrived!')
 				return None # Do something with this, perhaps
@@ -45,3 +47,10 @@ class GetApod:
 			date += timedelta(1)
 			delta -= timedelta(1)
 		return apod_list
+
+	# For the sake of conciseness...
+	def get_apod(self, date=None):
+		return self.get_or_create_apod(date)
+
+	def get_apod_list(self, start, end):
+		return self.get_or_create_apod_list(start, end)
