@@ -1,27 +1,25 @@
 from django.views import View
-from django.shortcuts import render
 
 from .models import Apod
 from .forms import ApodDateForm
-from .utils import ApodHttpMethodsMixin, ApodListMixin, ApodGridMixin
 
-from .api import ApodClass
+from .api import ApiClass
+from .utils import ApodViewMixin, ApodGridMixin, ApodListMixin
 
 
-
-class ApodView(View, ApodHttpMethodsMixin):
+class ApodView(View, ApodViewMixin):
 	model = Apod
-	apod_class = ApodClass
+	api_class = ApiClass
 	form_class = ApodDateForm
 	template_name = 'apod/apod.html'
 
 
 class ApodGrid(View, ApodGridMixin):
 	model = Apod
-	apod_class = ApodClass
+	api_class = ApiClass
 	template_name = 'apod/apod_grid.html'
 
 
 class ApodList(View, ApodListMixin):
-	apod_class = ApodClass
+	api_class = ApiClass
 	template_name = 'apod/apod_list.html'
