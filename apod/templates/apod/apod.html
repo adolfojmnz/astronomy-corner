@@ -1,8 +1,9 @@
 {% extends parent_template|default:"apod/base_apod.html" %}
 
-{% block title %}
-	APOD - Astronomy Picture Of The Day
-{% endblock %}
+{% block title %} APOD - Astronomy Picture Of The Day {% endblock %}
+
+{% load get_content_type %}
+
 
 {% block content %}
 	<h1 class="text-center">Astronomy Picture Of The Day</h1>
@@ -12,23 +13,38 @@
 			{{ apod.date }}
 		</time>
 	</p>
-	<a href="{{ apod.json_data.url }}" target="_blank">
+
+	{# load image or video for APOD #}
+	{% if apod.json_data.url|get_content_type == 'video'%}
+		{% include "bootstrap-video.html" with source=apod.json_data.url %}
+	{% elif apod.json_data.url|get_content_type == 'image' %}
 		{% include "bootstrap-image.html" with source=apod.json_data.url %}
-	</a>
+	{% endif %}
 
 	<h2 class="text-center">{{ apod.title }}</h2>
 
 	<p class="text-center">
 		<strong>Explanation</strong>:
-		{{ apod.json_data.explanation }}
+		{% if apod.json_data.explanation %}
+			{{ apod.json_data.explanation }}
+		{% else %}
+			<strong><em>Not Found!</em></strong>
+		{% endif %}
 	</p>
 
-	<p class="text-center">Copyright: {{ apod.json_data.copyright }}</p>
+	<p class="text-center">Copyright:
+		{% if apod.json_data.copyright %}
+			{{ apod.json_data.copyright }}
+		{% else %}
+			<strong><em>Not Found!</em></strong>
+		{% endif %}
+	</p>
 	<p class="text-center">Source <a href="https://apod.nasa.gov/" target="_blank">https://apod.nasa.gov/</a></p>
 	<p class="text-center"><a href="{{ apod.json_data.hdurl }}" target="_blank">Open image in HD</a></p>
 
 	<hr>
 	<center>
+		<p>Select a date:</p>
 		{% include "apod/apod_date_form.html" %}
 	</center>
 {% endblock %}
