@@ -3,10 +3,13 @@ from django import forms
 from .models import Apod
 
 
+class DateInput(forms.DateInput):
+    input_type = 'date'
+
+
 class ApodDateForm(forms.Form):
 	date = forms.DateField(
-		label='Select A Date',
-		widget=forms.SelectDateWidget,
+		widget = DateInput(),
 	)
 
 	def __str__(self):
