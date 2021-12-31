@@ -17,13 +17,12 @@ class DateProcessorsMixin:
 		"""
 		Precesses POST request and return the requested date.
 		"""
-		date = [
-			request['date_year'],
-			request['date_month'],
-			request['date_day'],
-		]
-		date = [e if len(e) > 1 else f'0{e}' for e in date]
-		return f'{date[0]}-{date[1]}-{date[2]}'
+		try:
+			return request['date']
+		except KeyError:
+			print('Invalid request!')
+			raise KeyError
+
 
 	def get_date_range(self, start=None, end=None, days=None):
 		"""
