@@ -7,7 +7,7 @@ environ.Env.read_env()
 
 class DateProcessorsMixin:
 	"""
-	The methdos in this class are intented to be use in ApodClass.
+	The methdos in this class are intented to be use in ApiClass.
 	Note: all methods return string(s) date formated as '2021-12-22'
 	"""
 	def get_date_for_today(self):
@@ -102,7 +102,7 @@ class DataProcessorsMixin(ApiProcessorMixin, DataRetrivererMixin):
 		return self.get_data_from_api(API)
 
 
-class ApodClass(DataProcessorsMixin):
+class ApiClass(DataProcessorsMixin):
 	"""
 	Inherit this class to work with the APOD API.
 	"""
