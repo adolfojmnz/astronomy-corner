@@ -27,6 +27,7 @@ class ApodViewMixin(GetApod):
 			}
 			return render(request, self.template_name, context)
 		else:
+			print('Invalid form!') # Debugging message
 			context = {
 				'form': self.form_class(),
 				'apod': self.get_apod(),
