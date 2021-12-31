@@ -16,9 +16,12 @@
 		{% include "bootstrap-image.html" with source=apod.json_data.url %}
 	</a>
 
-	<h2 class="text-center">{{ apod_data.title }}</h2>
+	<h2 class="text-center">{{ apod.title }}</h2>
 
-	<p class="text-center"><strong>Explanation</strong>: {{ apod_data.explanation }}</p>
+	<p class="text-center">
+		<strong>Explanation</strong>:
+		{{ apod.json_data.explanation }}
+	</p>
 
 	<p class="text-center">Copyright: {{ apod.json_data.copyright }}</p>
 	<p class="text-center">Source <a href="https://apod.nasa.gov/" target="_blank">https://apod.nasa.gov/</a></p>

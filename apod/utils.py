@@ -13,7 +13,7 @@ class ApodViewMixin(GetApod):
 	def get(self, request):
 		context = {
 			'form': self.form_class(),
-			'apod': self.get_apod()
+			'apod': self.get_apod(),
 		}
 		return render(request, self.template_name, context)
 
