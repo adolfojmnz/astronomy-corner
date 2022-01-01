@@ -4,47 +4,49 @@
 
 {% load get_content_type %}
 
-
 {% block content %}
-	<h1 class="text-center">Astronomy Picture Of The Day</h1>
 
-	<p class="text-center">
-		<time datetime="{{ apod.date }}">
-			{{ apod.date }}
-		</time>
-	</p>
+	<div class="container-sm">
+		<h1 class="text-center">Astronomy Picture Of The Day</h1>
 
-	{# load image or video for APOD #}
-	{% if apod.json_data.url|get_content_type == 'video'%}
-		{% include "bootstrap-video.html" with source=apod.json_data.url %}
-	{% elif apod.json_data.url|get_content_type == 'image' %}
-		{% include "bootstrap-image.html" with source=apod.json_data.url %}
-	{% endif %}
+		<p class="text-center">
+			<time datetime="{{ apod.date }}">
+				{{ apod.date }}
+			</time>
+		</p>
 
-	<h2 class="text-center">{{ apod.title }}</h2>
-
-	<p class="text-center">
-		<strong>Explanation</strong>:
-		{% if apod.json_data.explanation %}
-			{{ apod.json_data.explanation }}
-		{% else %}
-			<strong><em>Not Found!</em></strong>
+		{# load image or video for APOD #}
+		{% if apod.json_data.url|get_content_type == 'video'%}
+			{% include "bootstrap-video.html" with source=apod.json_data.url %}
+		{% elif apod.json_data.url|get_content_type == 'image' %}
+			{% include "bootstrap-image.html" with source=apod.json_data.url %}
 		{% endif %}
-	</p>
 
-	<p class="text-center">Copyright:
-		{% if apod.json_data.copyright %}
-			{{ apod.json_data.copyright }}
-		{% else %}
-			<strong><em>Not Found!</em></strong>
-		{% endif %}
-	</p>
-	<p class="text-center">Source <a href="https://apod.nasa.gov/" target="_blank">https://apod.nasa.gov/</a></p>
-	<p class="text-center"><a href="{{ apod.json_data.hdurl }}" target="_blank">Open image in HD</a></p>
+		<h2 class="text-center">{{ apod.title }}</h2>
 
-	<hr>
-	<center>
-		<p>Select a date:</p>
-		{% include "apod/apod_date_form.html" %}
-	</center>
+		<p class="text-center">
+			<strong>Explanation</strong>:
+			{% if apod.json_data.explanation %}
+				{{ apod.json_data.explanation }}
+			{% else %}
+				<strong><em>Not Found!</em></strong>
+			{% endif %}
+		</p>
+
+		<p class="text-center">Copyright:
+			{% if apod.json_data.copyright %}
+				{{ apod.json_data.copyright }}
+			{% else %}
+				<strong><em>Not Found!</em></strong>
+			{% endif %}
+		</p>
+		<p class="text-center">Source <a href="https://apod.nasa.gov/" target="_blank">https://apod.nasa.gov/</a></p>
+		<p class="text-center"><a href="{{ apod.json_data.hdurl }}" target="_blank">Open image in HD</a></p>
+
+		<hr>
+		<center>
+			<p>Select a date:</p>
+			{% include "apod/apod_date_form.html" %}
+		</center>
+	</div>
 {% endblock %}
