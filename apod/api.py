@@ -69,6 +69,7 @@ class ApiProcessorMixin(DateProcessorsMixin):
 class DataRetrivererMixin:
 
 	def get_data_from_api(self, API):
+		print(API)
 		try:
 			with urllib.request.urlopen(API) as data:
 				return json.loads(data.read().decode())
